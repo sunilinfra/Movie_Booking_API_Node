@@ -4,15 +4,14 @@ env.config(); //configuring env file
 const Movie = require("./models/movie.model"); 
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const app = express(); //EXpress object
+const app = express(); //Express object
 
+app.use(bodyParser.urlencoded({ extended: true })); //middleware to parse urlencoded data
+app.use(bodyParser.json()); //middleware to parse json data
 
 const MovieRoutes = require("./routes/movie.routes");
 
 
-
-app.use(bodyParser.urlencoded({ extended: true })); //middleware to parse urlencoded data
-app.use(bodyParser.json()); //middleware to parse json data
 
 
 MovieRoutes(app); //registering routes

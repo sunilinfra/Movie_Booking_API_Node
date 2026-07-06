@@ -4,7 +4,8 @@
   "description": "This is a backend API application for Movie Booking similar to BMS",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx nodemon index.js"
   },
   "author": "Sunil Bist",
   "license": "ISC",
@@ -12,6 +13,7 @@
     "body-parser": "^2.3.0",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
-    "mongoose": "^9.7.3"
+    "mongoose": "^9.7.3",
+    "nodemon": "^3.1.14"
   }
 }

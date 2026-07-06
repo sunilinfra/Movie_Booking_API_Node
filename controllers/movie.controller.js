@@ -1,59 +1,32 @@
 const Movie = require("../models/movie.model");
 const movieService = require("../services/movie.service");
 
-
+const {sucessResponseBody,erroResponseBody
+} = require("../utils/responsebody");
 
 
 const createMovie = async (req, res) => {
     try {
-        const movie = await Movie.create(req.body);
-        return res.status(201).json({
-            success: true,
-            message: "Movie created successfully",
-            data: movie,
-            error: {}
-        });
+        const movie = await movieService.createMovie(req.body);
+        sucessResponseBody.data = response;
+        return res.status(201).json(sucessResponseBody);    
     } catch (err) {
-        return res.status(500).json({
-            success: false,
-            message: "Not able to create movie",
-            error: err.message,
-            data: {}
-        });
+        console.log("Error while creating movie", err);
+        return res.status(500).json(erroResponseBody);
     }
 };
 
 const deleteMovie = async (req, res) => {
     try {
-        const result = await Movie.deleteOne({ _id: req.params.id });
-        return res.status(200).json({
-            success: true,
-            message: "Movie deleted successfully",
-            data: result,
-            error: {}
-        });
+        const result = await movieService.deleteMovie(req.params.id);
+        sucessResponseBody.data = result;
+        return res.status(200).json(sucessResponseBody);
     } catch (err) {
-        return res.status(500).json({
-            success: false,
-            message: "Not able to delete movie",
-            error: err.message,
-            data: {}
-        });
+        console.log("Error while deleting movie", err);
+        return res.status(500).json(erroResponseBody);
     }
 };
 
-const erroResponseBody = {
-    err: {},
-    data: {},
-    message: "default",
-    success: false
-}
-const sucessResponseBody = {
-    success: true,
-    message: "Sucessfully proceed the requiest",
-    data: {},
-    error: {}
-}
 
 const getMovie = async (req, res) => {
     try {
